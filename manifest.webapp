@@ -1,6 +1,7 @@
 {
-  "name": "Christmas Carol Lyrics",
-  "description": "Lyrics for many Christmas Carols",
+  "name": "Flippy",
+  "description": "A Flippy Thing",
+  "launch_path": "/index.html",
   "developer": {
     "name": "Ian Bicking",
     "url": "http://ianbicking.org"
