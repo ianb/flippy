@@ -29,6 +29,21 @@ $(document).on("click", "#flips td", function () {
   }
 });
 
-TowTruck.hub.on("flip-color", function (msg) {
-  $("#" + msg.id).css({"background-color": msg.color});
-});
+var TowTruckConfig_hub_on = {
+  "flip-color": function (msg) {
+    $("#" + msg.id).css({"background-color": msg.color});
+  },
+  "towtruck.hello": function (msg) {
+    var colors = [];
+    $("td").each(function () {
+      var el = $(this);
+      colors.push({id: el.attr("id"), color: el.css("background-color")});
+    });
+    TowTruck.send({type: "init", colors: colors});
+  },
+  "init": function (msg) {
+    msg.colors.forEach(function (c) {
+      $("#" + c.id).css({"background-color": c.color});
+    });
+  }
+};
