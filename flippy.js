@@ -1,5 +1,5 @@
 $(function () {
-  $("#start-towtruck").click(TowTruck);
+  $("#start-towtruck").click(TogetherJS);
   randomize();
 });
 
@@ -24,12 +24,12 @@ $(document).on("click", "#flips td", function () {
   var el = $(this);
   var color = randomColor();
   el.css({"background-color": color});
-  if (TowTruck.running) {
-    TowTruck.send({type: "flip-color", id: el.attr("id"), color: color});
+  if (TogetherJS.running) {
+    TogetherJS.send({type: "flip-color", id: el.attr("id"), color: color});
   }
 });
 
-var TowTruckConfig_hub_on = {
+var TogetherJSConfig_hub_on = {
   "flip-color": function (msg) {
     $("#" + msg.id).css({"background-color": msg.color});
   },
@@ -39,7 +39,7 @@ var TowTruckConfig_hub_on = {
       var el = $(this);
       colors.push({id: el.attr("id"), color: el.css("background-color")});
     });
-    TowTruck.send({type: "init", colors: colors});
+    TogetherJS.send({type: "init", colors: colors});
   },
   "init": function (msg) {
     msg.colors.forEach(function (c) {
